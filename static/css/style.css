@@ -62,10 +62,32 @@ nav .container {
 .logo-container {
   text-decoration: none;
   display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s;
+}
+
+.logo-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: all 0.3s;
+  filter: drop-shadow(0 0 10px rgba(220, 38, 38, 0.5));
+  border: 2px solid var(--primary-red);
+}
+
+.logo-container:hover .logo-image {
+  filter: drop-shadow(0 0 20px rgba(220, 38, 38, 0.8));
+  transform: scale(1.05);
+}
+
+.logo-text-wrapper {
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0;
-  transition: all 0.3s;
+  position: relative;
 }
 
 .logo {
@@ -73,7 +95,7 @@ nav .container {
   font-weight: 700;
   font-style: normal;
   color: var(--primary-red);
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: 1;
   text-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
   transition: all 0.3s;
@@ -82,11 +104,14 @@ nav .container {
 .logo-tagline {
   font-family: "Poppins", sans-serif;
   color: var(--white);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 400;
-  margin-top: -2px;
   opacity: 0.9;
   transition: all 0.3s;
+  position: absolute;
+  bottom: -18px;
+  right: -10px;
+  white-space: nowrap;
 }
 
 .logo-container:hover .logo {
@@ -134,7 +159,7 @@ nav .container {
 .hero {
   background: var(--black);
   color: var(--white);
-  padding: 120px 20px;
+  padding: 100px 20px 120px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -151,6 +176,43 @@ nav .container {
     radial-gradient(circle at 20% 50%, rgba(220, 38, 38, 0.15) 0%, transparent 50%),
     radial-gradient(circle at 80% 50%, rgba(220, 38, 38, 0.15) 0%, transparent 50%);
   pointer-events: none;
+}
+
+.hero-logo-container {
+  position: relative;
+  margin-bottom: 2rem;
+  animation: fadeInDown 1s;
+}
+
+.hero-logo {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 40px rgba(220, 38, 38, 0.7));
+  animation: float 3s ease-in-out infinite;
+  border: 4px solid var(--primary-red);
+  box-shadow: 0 0 60px rgba(220, 38, 38, 0.5), inset 0 0 20px rgba(220, 38, 38, 0.3);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero h1 {
@@ -267,6 +329,17 @@ section {
   opacity: 1;
 }
 
+.vision-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  filter: none;
+  transition: all 0.3s;
+}
+
+.vision-card:hover .vision-icon {
+  transform: scale(1.1);
+}
+
 .vision-card h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
@@ -277,6 +350,7 @@ section {
 .vision-card p {
   color: var(--off-white);
   position: relative;
+  line-height: 1.7;
 }
 
 /* Blog Section */
@@ -736,6 +810,25 @@ footer {
     display: block;
   }
 
+  .logo-container {
+    gap: 0.7rem;
+  }
+
+  .logo-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .logo-tagline {
+    font-size: 0.65rem;
+    bottom: -16px;
+    right: -8px;
+  }
+
   .nav-links {
     position: absolute;
     top: 100%;
@@ -764,6 +857,15 @@ footer {
     width: 100%;
   }
 
+  .hero {
+    padding: 80px 20px 100px;
+  }
+
+  .hero-logo {
+    width: 140px;
+    height: 140px;
+  }
+
   .hero h1 {
     font-size: 2rem;
   }
@@ -783,6 +885,10 @@ footer {
 
   .vision-card {
     padding: 1.5rem;
+  }
+
+  .vision-icon {
+    font-size: 2.5rem;
   }
 
   .blog-grid {
@@ -849,8 +955,32 @@ footer {
 }
 
 @media (max-width: 480px) {
+  .logo-container {
+    gap: 0.5rem;
+  }
+
+  .logo-image {
+    width: 35px;
+    height: 35px;
+  }
+
+  .logo {
+    font-size: 1rem;
+  }
+
+  .logo-tagline {
+    font-size: 0.6rem;
+    bottom: -15px;
+    right: -6px;
+  }
+
   .hero {
-    padding: 80px 20px;
+    padding: 60px 20px 80px;
+  }
+
+  .hero-logo {
+    width: 110px;
+    height: 110px;
   }
 
   .hero h1 {
@@ -870,12 +1000,8 @@ footer {
     margin-bottom: 2rem;
   }
 
-  .logo {
-    font-size: 1.3rem;
-  }
-
-  .logo-tagline {
-    font-size: 0.65rem;
+  .vision-icon {
+    font-size: 2rem;
   }
 
   .team-photo {

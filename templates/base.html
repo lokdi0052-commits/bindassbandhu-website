@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}BindassBandhu - Truth & Facts{% endblock %}</title>
+    <title>{% block title %}BindaasBandhu - Truth & Facts{% endblock %}</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
@@ -20,8 +20,11 @@
     <nav>
       <div class="container">
         <a href="#home" class="logo-container">
-          <div class="logo">Bindaas Bandhu</div>
-          <div class="logo-tagline">Aap ka apna bandhu</div>
+          <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Bindaas Bandhu Logo" class="logo-image">
+          <div class="logo-text-wrapper" style="transform: rotate(-4deg);">
+            <div class="logo">Bindaas Bandhu</div>
+            <div class="logo-tagline">Aap ka apna bandhu</div>
+          </div>
         </a>
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         <ul class="nav-links" id="navLinks">

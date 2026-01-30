@@ -3,7 +3,10 @@
 {% block content %}
 <!-- Hero Section -->
 <section id="home" class="hero">
-  <h1>Welcome to BindassBandhu</h1>
+  <div class="hero-logo-container">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Bindaas Bandhu Logo" class="hero-logo">
+  </div>
+  <h1>Welcome to BindaasBandhu</h1>
   <p>
     Your trusted source for facts, truth, and insightful content about
     trending topics and history
@@ -16,24 +19,30 @@
     <h2 class="section-title">Our Vision & Mission</h2>
     <div class="vision-content">
       <div class="vision-card">
+        <div class="vision-icon">🎯</div>
         <h3>Truth First</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          We are committed to delivering authentic, fact-checked content that cuts through misinformation. 
+          Every piece of content we create is thoroughly researched and verified to ensure our audience 
+          receives nothing but the truth. Your trust is our foundation.
         </p>
       </div>
       <div class="vision-card">
+        <div class="vision-icon">✨</div>
         <h3>Quality Content</h3>
         <p>
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          nisi ut aliquip ex ea commodo consequat.
+          Our team of dedicated researchers, editors, and creators work tirelessly to produce engaging, 
+          informative content about history and trending topics. We believe quality over quantity, ensuring 
+          every video and post adds real value to our community's knowledge.
         </p>
       </div>
       <div class="vision-card">
+        <div class="vision-icon">🤝</div>
         <h3>Community Impact</h3>
         <p>
-          Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur.
+          We're building a community of informed individuals who value knowledge and truth. Through our 
+          YouTube channel and social media, we reach thousands daily, fostering discussions that matter 
+          and creating content that educates, inspires, and empowers our audience.
         </p>
       </div>
     </div>
@@ -76,18 +85,17 @@
     <h2 class="section-title">About Us</h2>
     <div class="about-content">
       <p style="font-size: 1.1rem; margin-bottom: 2rem">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
-        odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla
-        quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent
-        mauris. Fusce nec tellus sed augue semper porta. Mauris massa.
-        Vestibulum lacinia arcu eget nulla.
+        BindassBandhu is your go-to destination for authentic historical content and insightful analysis 
+        of trending topics. We are a passionate team of content creators dedicated to bringing you 
+        well-researched, engaging content across YouTube and social media platforms. Our mission is to 
+        make learning accessible and enjoyable for everyone.
       </p>
       <p style="font-size: 1.1rem; margin-bottom: 2rem">
-        Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-        per inceptos himenaeos. Curabitur sodales ligula in libero. Sed
-        dignissim lacinia nunc.
+        With a commitment to truth and quality, we dive deep into fascinating historical events, analyze 
+        current trends, and present them in a way that resonates with our diverse audience. Join us on 
+        this journey of discovery and become part of our growing community of knowledge seekers.
       </p>
-      <h3 style="margin: 2rem 0 1rem; color: var(--dark-blue)">
+      <h3 style="margin: 2rem 0 1rem; color: var(--primary-red)">
         Follow Us
       </h3>
       <div class="social-links">
@@ -105,24 +113,44 @@
     <h2 class="section-title">Our Team</h2>
     <div class="team-grid">
       <div class="team-member">
-        <div class="team-photo"><img src="{{ url_for('static', filename='img/guy1.jpg') }}" alt=""></div>
-        <h3>Kailyan Jyoti Sharma</h3>
-        <p>CEO & Chairman</p>
+        <div class="team-photo"><img src="{{ url_for('static', filename='img/kailyan.jpeg') }}" alt=""></div>
+        <h3>Kailyan Sharma</h3>
+        <p>Founder & Chairman</p>
       </div>
       <div class="team-member">
-        <div class="team-photo"><img src="{{ url_for('static', filename='img/girl1.jpg') }}" alt=""></div>
+        <div class="team-photo"><img src="{{ url_for('static', filename='img/sede.jpeg') }}" alt=""></div>
         <h3>Sedeneino</h3>
-        <p>HO</p>
+        <p>Head of Operation</p>
       </div>
       <div class="team-member">
         <div class="team-photo"><img src="{{ url_for('static', filename='img/guy2.jpg') }}" alt=""></div>
         <h3>Akash</h3>
-        <p>CTO</p>
+        <p>Chief Technical Officer</p>
       </div>
       <div class="team-member">
-        <div class="team-photo"><img src="{{ url_for('static', filename='img/guy3.jpg') }}" alt=""></div>
+        <div class="team-photo"><img src="{{ url_for('static', filename='img/aboi.png') }}" alt=""></div>
         <h3>Aboi</h3>
         <p>Social Media Handler</p>
+      </div>
+      <div class="team-member">
+        <div class="team-photo"><img src="{{ url_for('static', filename='img/rajesh.jpeg') }}" alt=""></div>
+        <h3>Rajesh Rabha</h3>
+        <p>Editor 1</p>
+      </div>
+      <div class="team-member">
+        <div class="team-photo"><img src="{{ url_for('static', filename='img/bikky.jpeg') }}" alt=""></div>
+        <h3>Vikram Giri</h3>
+        <p>Editor 2</p>
+      </div>
+      <div class="team-member">
+        <div class="team-photo"><img src="{{ url_for('static', filename='img/sushi.jpeg') }}" alt=""></div>
+        <h3>Sushila Gupta</h3>
+        <p>Researcher 1</p>
+      </div>
+        <div class="team-member">
+        <div class="team-photo"><img src="{{ url_for('static', filename='img/anup.jpeg') }}" alt=""></div>
+        <h3>Anup</h3>
+        <p>Researcher 2</p>
       </div>
     </div>
   </div>
