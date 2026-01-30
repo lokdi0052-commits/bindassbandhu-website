@@ -1,0 +1,96 @@
+error:-
+(virt) C:\Users\Hp\Desktop\KMKR Production>python app.py
+ * Serving Flask app 'app'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5555
+ * Running on http://10.125.153.123:5555
+Press CTRL+C to quit
+10.125.153.123 - - [30/Jan/2026 19:18:11] "GET / HTTP/1.1" 200 -
+10.125.153.123 - - [30/Jan/2026 19:18:11] "GET /static/css/style.css HTTP/1.1" 200 -
+10.125.153.123 - - [30/Jan/2026 19:18:11] "GET /static/js/main.js HTTP/1.1" 200 -
+10.125.153.123 - - [30/Jan/2026 19:18:11] "GET /static/img/guy3.jpg HTTP/1.1" 200 -
+10.125.153.123 - - [30/Jan/2026 19:18:11] "GET /static/img/guy2.jpg HTTP/1.1" 200 -
+10.125.153.123 - - [30/Jan/2026 19:18:11] "GET /static/img/girl1.jpg HTTP/1.1" 200 -
+10.125.153.123 - - [30/Jan/2026 19:18:11] "GET /static/img/guy1.jpg HTTP/1.1" 200 -
+10.125.153.123 - - [30/Jan/2026 19:18:23] "GET /favicon.ico HTTP/1.1" 404 -
+Error sending email: You can only send testing emails to your own email address (lokdi0052@gmail.com). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.
+10.125.153.123 - - [30/Jan/2026 19:18:49] "POST /send-message HTTP/1.1" 500 -
+
+app.py:-
+from flask import Flask, render_template, request, jsonify
+import os
+from dotenv import load_dotenv
+import resend
+
+load_dotenv()
+
+app = Flask(__name__)
+
+# Configure Resend
+resend.api_key = os.getenv('RESEND_API_KEY')
+RECEIVER_EMAIL = os.getenv('RECEIVER_EMAIL', 'moawalling75@gmail.com')
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/send-message', methods=['POST'])
+def send_message():
+    try:
+        if not resend.api_key:
+            return jsonify({
+                'success': False, 
+                'message': 'Email service not configured.'
+            }), 500
+        
+        data = request.get_json()
+        name = data.get('name')
+        email = data.get('email')
+        message = data.get('message')
+        
+        if not all([name, email, message]):
+            return jsonify({'success': False, 'message': 'All fields are required'}), 400
+        
+        # Send email via Resend
+        params = {
+            "from": "BindassBandhu <onboarding@resend.dev>",  # Use this for testing
+            "to": [RECEIVER_EMAIL],
+            "subject": f"New Contact Form Message from {name}",
+            "html": f"""
+                <h2>New message from BindassBandhu Contact Form</h2>
+                <p><strong>Name:</strong> {name}</p>
+                <p><strong>Email:</strong> {email}</p>
+                <p><strong>Message:</strong></p>
+                <p>{message}</p>
+            """
+        }
+        
+        response = resend.Emails.send(params)
+        
+        return jsonify({'success': True, 'message': 'Message sent successfully!'})
+    
+    except Exception as e:
+        print(f"Error sending email: {str(e)}")
+        return jsonify({
+            'success': False, 
+            'message': 'Failed to send message. Please try again later.'
+        }), 500
+
+if __name__ == '__main__':
+    port = int(os.getenv('PORT', 5555))
+    app.run(debug=False, host='0.0.0.0', port=port)
+
+.env:-
+# Email Configuration
+SENDER_EMAIL=moawalling75@gmail.com
+SENDER_PASSWORD=fifn sxdj iuyt bdaq
+RECEIVER_EMAIL=moawalling75@gmail.com
+
+# Resend Configuration
+RESEND_API_KEY=re_ccZusuQK_9bmmn5kcQjA7bRfPuCNjGsTj 
+
+# Flask Configuration
+FLASK_ENV=production
+SECRET_KEY=adsfDFdsfSDW4563!@$
