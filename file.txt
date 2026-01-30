@@ -1,14 +1,12 @@
--The "Truth First",... it appers black and white and only when hover the color appears I don't want that, I want it to look color full only
--Here:- 
-<div class="logo-text-wrapper" style="transform: rotate(-4deg);">
-            <div class="logo">Bindaas Bandhu</div>
-            <div class="logo-tagline">Aap ka apna bandhu</div>
-          </div>
--Can the "Aap ka apna bandhu" be appear on the right side below the the "Bindaas Bandhu"
+-Make it optimize and good for SEO (add the icon, desc, keywords... etc)
+
+-Note: our social media is only instagram, twitter and for video its youtube channel 
+-our domain in future will be bindaasbandhu.fun
+
+my_current logo.png size:- 1024*1024 (static/img)
+my_current logo.ico size:- 32*32 (static/img)
 
 base.html:-
-
-index.html:-
 <!doctype html>
 <html lang="en">
   <head>
@@ -60,327 +58,187 @@ index.html:-
   </body>
 </html>
 
-main.js:-
-// Toggle mobile menu
-function toggleMenu() {
-  const navLinks = document.getElementById("navLinks");
-  navLinks.classList.toggle("active");
-}
+index.html:-
+{% extends "base.html" %}
 
-// Close menu when clicking a link
-document.querySelectorAll(".nav-links a").forEach((link) => {
-  link.addEventListener("click", () => {
-    document.getElementById("navLinks").classList.remove("active");
-  });
-});
+{% block content %}
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="hero-logo-container">
+    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Bindaas Bandhu Logo" class="hero-logo">
+  </div>
+  <h1>Welcome to BindaasBandhu</h1>
+  <p>
+    Your trusted source for facts, truth, and insightful content about
+    trending topics and history
+  </p>
+</section>
 
-// Make entire nav list item clickable
-document.querySelectorAll(".nav-links li").forEach((li) => {
-  li.addEventListener("click", function(e) {
-    const link = this.querySelector("a");
-    if (link) {
-      link.click();
-    }
-  });
-});
-
-// Format date in IST
-function formatIndiaDate(date) {
-  return date.toLocaleDateString("en-IN", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "Asia/Kolkata",
-  });
-}
-
-// Sample blog posts with India dates
-const blogPosts = [
-  // {
-  //   title: "Understanding Historical Events",
-  //   excerpt:
-  //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //   date: new Date("2026-01-15"),
-  //   image: "https://images.unsplash.com/photo-1461360228754-6e81c478b882?w=500",
-  //   content: `
-  //     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  //     <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  //     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-  //     <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-  //   `,
-  // },
-  // {
-  //   title: "Trending Topics Analysis",
-  //   excerpt:
-  //     "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  //   date: new Date("2026-01-10"),
-  //   image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=500",
-  //   content: `
-  //     <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-  //     <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
-  //     <p>Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
-  //   `,
-  // },
-  // {
-  //   title: "Facts vs Fiction",
-  //   excerpt:
-  //     "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-  //   date: new Date("2026-01-05"),
-  //   image: "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=500",
-  //   content: `
-  //     <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  //     <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
-  //   `,
-  // },
-  // {
-  //   title: "Deep Dive into History",
-  //   excerpt:
-  //     "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  //   date: new Date("2025-12-28"),
-  //   image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=500",
-  //   content: `
-  //     <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-  //     <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
-  //   `,
-  // },
-  // {
-  //   title: "Current Affairs Explained",
-  //   excerpt:
-  //     "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-  //   date: new Date("2025-12-20"),
-  //   image: "https://images.unsplash.com/photo-1504711331083-9c895941bf81?w=500",
-  //   content: `
-  //     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-  //   `,
-  // },
-  // {
-  //   title: "Truth Behind the Headlines",
-  //   excerpt:
-  //     "Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt.",
-  //   date: new Date("2025-12-15"),
-  //   image: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=500",
-  //   content: `
-  //     <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
-  //   `,
-  // },
-];
-
-// Track current blog
-let currentBlogIndex = -1;
-
-// Pagination variables
-let currentPage = 1;
-const postsPerPage = 6;
-
-// Calculate total pages
-function getTotalPages() {
-  return Math.ceil(blogPosts.length / postsPerPage);
-}
-
-// Get posts for current page
-function getCurrentPagePosts() {
-  const start = (currentPage - 1) * postsPerPage;
-  const end = start + postsPerPage;
-  return blogPosts.slice(start, end);
-}
-
-// Update pagination info
-function updatePagination() {
-  const totalPages = getTotalPages();
-  const paginationDiv = document.querySelector(".pagination");
-  
-  // Hide pagination if no blogs
-  if (blogPosts.length === 0) {
-    paginationDiv.style.display = "none";
-    return;
-  }
-  
-  paginationDiv.style.display = "flex";
-  document.getElementById("pageInfo").textContent =
-    `Page ${currentPage} of ${totalPages}`;
-  document.getElementById("prevBtn").disabled = currentPage === 1;
-  document.getElementById("nextBtn").disabled = currentPage === totalPages;
-}
-
-// Change page
-function changePage(direction) {
-  const totalPages = getTotalPages();
-  currentPage += direction;
-  if (currentPage < 1) currentPage = 1;
-  if (currentPage > totalPages) currentPage = totalPages;
-  renderBlogs();
-  document.getElementById("blog").scrollIntoView({ behavior: "smooth" });
-}
-
-// Open blog modal
-function openBlogModal(index) {
-  const actualIndex = (currentPage - 1) * postsPerPage + index;
-  currentBlogIndex = actualIndex;
-  const post = blogPosts[actualIndex];
-
-  document.getElementById("modalTitle").textContent = post.title;
-  document.getElementById("modalDate").textContent = formatIndiaDate(post.date);
-  document.getElementById("modalContent").innerHTML = post.content;
-
-  const modalImage = document.getElementById("modalImage");
-  if (post.image) {
-    modalImage.style.backgroundImage = `url(${post.image})`;
-  } else {
-    modalImage.style.backgroundImage =
-      "linear-gradient(135deg, var(--purple), var(--red))";
-  }
-
-  document.getElementById("blogModal").classList.add("active");
-  document.body.style.overflow = "hidden";
-}
-
-// Close modal
-function closeModal() {
-  document.getElementById("blogModal").classList.remove("active");
-  document.body.style.overflow = "auto";
-}
-
-// Close modal when clicking outside
-document.getElementById("blogModal").addEventListener("click", function (e) {
-  if (e.target === this) {
-    closeModal();
-  }
-});
-
-// Close modal with Escape key
-document.addEventListener("keydown", function(e) {
-  if (e.key === "Escape") {
-    const modal = document.getElementById("blogModal");
-    if (modal.classList.contains("active")) {
-      closeModal();
-    }
-  }
-});
-
-// Render blog posts
-function renderBlogs() {
-  const blogGrid = document.getElementById("blogGrid");
-  blogGrid.innerHTML = "";
-  
-  // Check if there are no blogs
-  if (blogPosts.length === 0) {
-    blogGrid.innerHTML = `
-      <div style="
-        grid-column: 1 / -1;
-        text-align: center;
-        padding: 3rem 2rem;
-        background: linear-gradient(135deg, rgba(79, 195, 247, 0.1), rgba(126, 87, 194, 0.1));
-        border-radius: 15px;
-        margin: 2rem 0;
-      ">
-        <div style="
-          font-size: 4rem;
-          margin-bottom: 1rem;
-          background: linear-gradient(135deg, var(--dark-blue), var(--purple));
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        ">📝</div>
-        <h3 style="
-          color: var(--dark-blue);
-          font-size: 1.8rem;
-          margin-bottom: 0.5rem;
-        ">No Blogs Available</h3>
-        <p style="
-          color: #666;
-          font-size: 1.1rem;
-        ">Check back soon for new content!</p>
+<!-- Vision Section -->
+<section id="vision">
+  <div class="container">
+    <h2 class="section-title">Our Vision & Mission</h2>
+    <div class="vision-content">
+      <div class="vision-card">
+        <div class="vision-icon">🎯</div>
+        <h3>Truth First</h3>
+        <p>
+          We are committed to delivering authentic, fact-checked content that cuts through misinformation. 
+          Every piece of content we create is thoroughly researched and verified to ensure our audience 
+          receives nothing but the truth. Your trust is our foundation.
+        </p>
       </div>
-    `;
-    updatePagination();
-    return;
-  }
-  
-  const currentPosts = getCurrentPagePosts();
-
-  currentPosts.forEach((post, index) => {
-    const blogCard = document.createElement("div");
-    blogCard.className = "blog-card";
-
-    const imageStyle = post.image
-      ? `background-image: url(${post.image});`
-      : "";
-
-    blogCard.innerHTML = `
-      <div class="blog-image" style="${imageStyle}"></div>
-      <div class="blog-content">
-        <p class="blog-date">${formatIndiaDate(post.date)}</p>
-        <h3>${post.title}</h3>
-        <p>${post.excerpt}</p>
-        <a href="#" class="read-more" onclick="openBlogModal(${index}); return false;">Read More →</a>
+      <div class="vision-card">
+        <div class="vision-icon">✨</div>
+        <h3>Quality Content</h3>
+        <p>
+          Our team of dedicated researchers, editors, and creators work tirelessly to produce engaging, 
+          informative content about history and trending topics. We believe quality over quantity, ensuring 
+          every video and post adds real value to our community's knowledge.
+        </p>
       </div>
-    `;
-    blogGrid.appendChild(blogCard);
-  });
+      <div class="vision-card">
+        <div class="vision-icon">🤝</div>
+        <h3>Community Impact</h3>
+        <p>
+          We're building a community of informed individuals who value knowledge and truth. Through our 
+          YouTube channel and social media, we reach thousands daily, fostering discussions that matter 
+          and creating content that educates, inspires, and empowers our audience.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  updatePagination();
-}
+<!-- Blog Section -->
+<section id="blog">
+  <div class="container">
+    <h2 class="section-title">Latest Blogs</h2>
+    <div class="blog-grid" id="blogGrid">
+      <!-- Blog posts will be dynamically added here -->
+    </div>
+    <div class="pagination">
+      <button id="prevBtn" onclick="changePage(-1)">← Previous</button>
+      <span id="pageInfo"></span>
+      <button id="nextBtn" onclick="changePage(1)">Next →</button>
+    </div>
+  </div>
+</section>
 
-// Handle form submission
-async function handleSubmit(event) {
-  event.preventDefault();
-  
-  const submitBtn = event.target.querySelector('.submit-btn');
-  const originalText = submitBtn.textContent;
-  
-  // Disable button and show loading state
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Sending...';
-  
-  const formData = {
-    name: document.getElementById('name').value,
-    email: document.getElementById('email').value,
-    message: document.getElementById('message').value
-  };
-  
-  try {
-    const response = await fetch('/send-message', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData)
-    });
-    
-    const result = await response.json();
-    
-    if (result.success) {
-      alert('Thank you for your message! We will get back to you soon.');
-      event.target.reset();
-    } else {
-      alert('Failed to send message: ' + result.message);
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    alert('An error occurred. Please try again later.');
-  } finally {
-    // Re-enable button
-    submitBtn.disabled = false;
-    submitBtn.textContent = originalText;
-  }
-}
+<!-- Blog Modal -->
+<div class="modal" id="blogModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button class="close-modal" onclick="closeModal()">×</button>
+      <h2 id="modalTitle"></h2>
+    </div>
+    <div class="modal-body">
+      <div class="modal-image" id="modalImage"></div>
+      <p class="modal-date" id="modalDate"></p>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+</div>
 
-// Initialize
-renderBlogs();
+<!-- About Section -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">About Us</h2>
+    <div class="about-content">
+      <p style="font-size: 1.1rem; margin-bottom: 2rem">
+        BindassBandhu is your go-to destination for authentic historical content and insightful analysis 
+        of trending topics. We are a passionate team of content creators dedicated to bringing you 
+        well-researched, engaging content across YouTube and social media platforms. Our mission is to 
+        make learning accessible and enjoyable for everyone.
+      </p>
+      <p style="font-size: 1.1rem; margin-bottom: 2rem">
+        With a commitment to truth and quality, we dive deep into fascinating historical events, analyze 
+        current trends, and present them in a way that resonates with our diverse audience. Join us on 
+        this journey of discovery and become part of our growing community of knowledge seekers.
+      </p>
+      <h3 style="margin: 2rem 0 1rem; color: var(--primary-red)">
+        Follow Us
+      </h3>
+      <div class="social-links">
+        <a href="https://x.com/BindaasBandhu" target="_blank"><i class="fa-brands fa-x-twitter"></i> Twitter</a>
+        <a href="https://www.instagram.com/bindaasbandhu/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
+        <a href="https://www.youtube.com/@BindaasBandhu-b7u" target="_blank"><i class="fa-brands fa-youtube"></i> YouTube</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-// Smooth scrolling
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  });
-});
+<!-- Team Section -->
+<section id="team">
+  <div class="container">
+    <h2 class="section-title">Our Team</h2>
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="team-photo"><img src="{{ url_for('static', filename='img/kailyan.jpeg') }}" alt=""></div>
+        <h3>Kailyan Sharma</h3>
+        <p>Founder & Chairman</p>
+      </div>
+      <div class="team-member">
+        <div class="team-photo"><img src="{{ url_for('static', filename='img/sede.jpeg') }}" alt=""></div>
+        <h3>Sedeneino</h3>
+        <p>Head of Operation</p>
+      </div>
+      <div class="team-member">
+        <div class="team-photo"><img src="{{ url_for('static', filename='img/guy2.jpg') }}" alt=""></div>
+        <h3>Akash</h3>
+        <p>Chief Technical Officer</p>
+      </div>
+      <div class="team-member">
+        <div class="team-photo"><img src="{{ url_for('static', filename='img/aboi.png') }}" alt=""></div>
+        <h3>Aboi</h3>
+        <p>Social Media Handler</p>
+      </div>
+      <div class="team-member">
+        <div class="team-photo"><img src="{{ url_for('static', filename='img/rajesh.jpeg') }}" alt=""></div>
+        <h3>Rajesh Rabha</h3>
+        <p>Editor 1</p>
+      </div>
+      <div class="team-member">
+        <div class="team-photo"><img src="{{ url_for('static', filename='img/bikky.jpeg') }}" alt=""></div>
+        <h3>Vikram Giri</h3>
+        <p>Editor 2</p>
+      </div>
+      <div class="team-member">
+        <div class="team-photo"><img src="{{ url_for('static', filename='img/sushi.jpeg') }}" alt=""></div>
+        <h3>Sushila Gupta</h3>
+        <p>Researcher 1</p>
+      </div>
+        <div class="team-member">
+        <div class="team-photo"><img src="{{ url_for('static', filename='img/anup.jpeg') }}" alt=""></div>
+        <h3>Anup</h3>
+        <p>Researcher 2</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Contact Us</h2>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Gmail</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+  </div>
+</section>
+{% endblock %}
 
 style.css:-
 * {
@@ -472,6 +330,7 @@ nav .container {
   flex-direction: column;
   align-items: flex-start;
   gap: 0;
+  position: relative;
 }
 
 .logo {
@@ -490,9 +349,12 @@ nav .container {
   color: var(--white);
   font-size: 0.7rem;
   font-weight: 400;
-  margin-top: 2px;
   opacity: 0.9;
   transition: all 0.3s;
+  position: absolute;
+  bottom: -18px;
+  right: -10px;
+  white-space: nowrap;
 }
 
 .logo-container:hover .logo {
@@ -713,12 +575,11 @@ section {
 .vision-icon {
   font-size: 3rem;
   margin-bottom: 1rem;
-  filter: grayscale(100%) brightness(1.2);
+  filter: none;
   transition: all 0.3s;
 }
 
 .vision-card:hover .vision-icon {
-  filter: grayscale(0%) brightness(1);
   transform: scale(1.1);
 }
 
@@ -1207,6 +1068,8 @@ footer {
 
   .logo-tagline {
     font-size: 0.65rem;
+    bottom: -16px;
+    right: -8px;
   }
 
   .nav-links {
@@ -1350,6 +1213,8 @@ footer {
 
   .logo-tagline {
     font-size: 0.6rem;
+    bottom: -15px;
+    right: -6px;
   }
 
   .hero {
@@ -1392,6 +1257,328 @@ footer {
     min-width: 220px;
   }
 }
+
+main.js:-
+// Toggle mobile menu
+function toggleMenu() {
+  const navLinks = document.getElementById("navLinks");
+  navLinks.classList.toggle("active");
+}
+
+// Close menu when clicking a link
+document.querySelectorAll(".nav-links a").forEach((link) => {
+  link.addEventListener("click", () => {
+    document.getElementById("navLinks").classList.remove("active");
+  });
+});
+
+// Make entire nav list item clickable
+document.querySelectorAll(".nav-links li").forEach((li) => {
+  li.addEventListener("click", function(e) {
+    const link = this.querySelector("a");
+    if (link) {
+      link.click();
+    }
+  });
+});
+
+// Format date in IST
+function formatIndiaDate(date) {
+  return date.toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "Asia/Kolkata",
+  });
+}
+
+// Sample blog posts with India dates
+const blogPosts = [
+  // {
+  //   title: "Understanding Historical Events",
+  //   excerpt:
+  //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  //   date: new Date("2026-01-15"),
+  //   image: "https://images.unsplash.com/photo-1461360228754-6e81c478b882?w=500",
+  //   content: `
+  //     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  //     <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  //     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+  //     <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+  //   `,
+  // },
+  // {
+  //   title: "Trending Topics Analysis",
+  //   excerpt:
+  //     "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  //   date: new Date("2026-01-10"),
+  //   image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=500",
+  //   content: `
+  //     <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+  //     <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+  //     <p>Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
+  //   `,
+  // },
+  // {
+  //   title: "Facts vs Fiction",
+  //   excerpt:
+  //     "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+  //   date: new Date("2026-01-05"),
+  //   image: "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=500",
+  //   content: `
+  //     <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  //     <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+  //   `,
+  // },
+  // {
+  //   title: "Deep Dive into History",
+  //   excerpt:
+  //     "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  //   date: new Date("2025-12-28"),
+  //   image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=500",
+  //   content: `
+  //     <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+  //     <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+  //   `,
+  // },
+  // {
+  //   title: "Current Affairs Explained",
+  //   excerpt:
+  //     "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+  //   date: new Date("2025-12-20"),
+  //   image: "https://images.unsplash.com/photo-1504711331083-9c895941bf81?w=500",
+  //   content: `
+  //     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+  //   `,
+  // },
+  // {
+  //   title: "Truth Behind the Headlines",
+  //   excerpt:
+  //     "Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt.",
+  //   date: new Date("2025-12-15"),
+  //   image: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=500",
+  //   content: `
+  //     <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+  //   `,
+  // },
+];
+
+// Track current blog
+let currentBlogIndex = -1;
+
+// Pagination variables
+let currentPage = 1;
+const postsPerPage = 6;
+
+// Calculate total pages
+function getTotalPages() {
+  return Math.ceil(blogPosts.length / postsPerPage);
+}
+
+// Get posts for current page
+function getCurrentPagePosts() {
+  const start = (currentPage - 1) * postsPerPage;
+  const end = start + postsPerPage;
+  return blogPosts.slice(start, end);
+}
+
+// Update pagination info
+function updatePagination() {
+  const totalPages = getTotalPages();
+  const paginationDiv = document.querySelector(".pagination");
+  
+  // Hide pagination if no blogs
+  if (blogPosts.length === 0) {
+    paginationDiv.style.display = "none";
+    return;
+  }
+  
+  paginationDiv.style.display = "flex";
+  document.getElementById("pageInfo").textContent =
+    `Page ${currentPage} of ${totalPages}`;
+  document.getElementById("prevBtn").disabled = currentPage === 1;
+  document.getElementById("nextBtn").disabled = currentPage === totalPages;
+}
+
+// Change page
+function changePage(direction) {
+  const totalPages = getTotalPages();
+  currentPage += direction;
+  if (currentPage < 1) currentPage = 1;
+  if (currentPage > totalPages) currentPage = totalPages;
+  renderBlogs();
+  document.getElementById("blog").scrollIntoView({ behavior: "smooth" });
+}
+
+// Open blog modal
+function openBlogModal(index) {
+  const actualIndex = (currentPage - 1) * postsPerPage + index;
+  currentBlogIndex = actualIndex;
+  const post = blogPosts[actualIndex];
+
+  document.getElementById("modalTitle").textContent = post.title;
+  document.getElementById("modalDate").textContent = formatIndiaDate(post.date);
+  document.getElementById("modalContent").innerHTML = post.content;
+
+  const modalImage = document.getElementById("modalImage");
+  if (post.image) {
+    modalImage.style.backgroundImage = `url(${post.image})`;
+  } else {
+    modalImage.style.backgroundImage =
+      "linear-gradient(135deg, var(--purple), var(--red))";
+  }
+
+  document.getElementById("blogModal").classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+// Close modal
+function closeModal() {
+  document.getElementById("blogModal").classList.remove("active");
+  document.body.style.overflow = "auto";
+}
+
+// Close modal when clicking outside
+document.getElementById("blogModal").addEventListener("click", function (e) {
+  if (e.target === this) {
+    closeModal();
+  }
+});
+
+// Close modal with Escape key
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    const modal = document.getElementById("blogModal");
+    if (modal.classList.contains("active")) {
+      closeModal();
+    }
+  }
+});
+
+// Render blog posts
+function renderBlogs() {
+  const blogGrid = document.getElementById("blogGrid");
+  blogGrid.innerHTML = "";
+  
+  // Check if there are no blogs
+  if (blogPosts.length === 0) {
+    blogGrid.innerHTML = `
+      <div style="
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 3rem 2rem;
+        background: linear-gradient(135deg, rgba(79, 195, 247, 0.1), rgba(126, 87, 194, 0.1));
+        border-radius: 15px;
+        margin: 2rem 0;
+      ">
+        <div style="
+          font-size: 4rem;
+          margin-bottom: 1rem;
+          background: linear-gradient(135deg, var(--dark-blue), var(--purple));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        ">📝</div>
+        <h3 style="
+          color: var(--dark-blue);
+          font-size: 1.8rem;
+          margin-bottom: 0.5rem;
+        ">No Blogs Available</h3>
+        <p style="
+          color: #666;
+          font-size: 1.1rem;
+        ">Check back soon for new content!</p>
+      </div>
+    `;
+    updatePagination();
+    return;
+  }
+  
+  const currentPosts = getCurrentPagePosts();
+
+  currentPosts.forEach((post, index) => {
+    const blogCard = document.createElement("div");
+    blogCard.className = "blog-card";
+
+    const imageStyle = post.image
+      ? `background-image: url(${post.image});`
+      : "";
+
+    blogCard.innerHTML = `
+      <div class="blog-image" style="${imageStyle}"></div>
+      <div class="blog-content">
+        <p class="blog-date">${formatIndiaDate(post.date)}</p>
+        <h3>${post.title}</h3>
+        <p>${post.excerpt}</p>
+        <a href="#" class="read-more" onclick="openBlogModal(${index}); return false;">Read More →</a>
+      </div>
+    `;
+    blogGrid.appendChild(blogCard);
+  });
+
+  updatePagination();
+}
+
+// Handle form submission
+async function handleSubmit(event) {
+  event.preventDefault();
+  
+  const submitBtn = event.target.querySelector('.submit-btn');
+  const originalText = submitBtn.textContent;
+  
+  // Disable button and show loading state
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending...';
+  
+  const formData = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    message: document.getElementById('message').value
+  };
+  
+  try {
+    const response = await fetch('/send-message', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      alert('Thank you for your message! We will get back to you soon.');
+      event.target.reset();
+    } else {
+      alert('Failed to send message: ' + result.message);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('An error occurred. Please try again later.');
+  } finally {
+    // Re-enable button
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalText;
+  }
+}
+
+// Initialize
+renderBlogs();
+
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  });
+});
 
 app.py:-
 from flask import Flask, render_template, request, jsonify
