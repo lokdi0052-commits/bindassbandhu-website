@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}BindaasBandhu - Truth & Facts{% endblock %}</title>
+    <title>{% block title %}BindaasBandhu - Youth-Driven Content Creation{% endblock %}</title>
+    <meta name="description" content="Bindaas Bandhu is a youth-driven content creation company built on powerful stories that educate, entertain, and inspire change. From India to the world, with purpose.">
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
@@ -20,17 +21,18 @@
     <nav>
       <div class="container">
         <a href="#home" class="logo-container">
-          <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Bindaas Bandhu Logo" class="logo-image">
           <div class="logo-text-wrapper" style="transform: rotate(-4deg);">
-            <div class="logo">Bindaas Bandhu</div>
+            <div class="logo">BindaasBandhu</div>
             <div class="logo-tagline">Aap ka apna bandhu</div>
           </div>
         </a>
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         <ul class="nav-links" id="navLinks">
           <li><a href="#home">Home</a></li>
-          <li><a href="#blog">Blog</a></li>
           <li><a href="#about">About Us</a></li>
+          <li><a href="#what-we-do">What We Do</a></li>
+          <li><a href="#vision">Vision</a></li>
+          <li><a href="#blog">Blog</a></li>
           <li><a href="#team">Our Team</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -41,7 +43,8 @@
 
     <!-- Footer -->
     <footer>
-      <p>&copy; 2026 BindassBandhu. All rights reserved.</p>
+      <p>&copy; 2026 BindaasBandhu. All rights reserved.</p>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">From India to the world. With purpose.</p>
     </footer>
 
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
