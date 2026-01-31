@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 import os
 from dotenv import load_dotenv
 import resend
@@ -14,6 +14,15 @@ RECEIVER_EMAIL = os.getenv('RECEIVER_EMAIL', 'moawalling75@gmail.com')
 @app.route('/')
 def index():
     return render_template('index.html')
+
+# SEO Routes
+@app.route('/robots.txt')
+def robots():
+    return send_from_directory(app.static_folder, 'robots.txt')
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory(app.static_folder, 'sitemap.xml')
 
 @app.route('/send-message', methods=['POST'])
 def send_message():
@@ -34,11 +43,11 @@ def send_message():
         
         # Send email via Resend
         params = {
-            "from": "BindassBandhu <onboarding@resend.dev>",  # Use this for testing
+            "from": "BindaasBandhu <onboarding@resend.dev>",
             "to": [RECEIVER_EMAIL],
             "subject": f"New Contact Form Message from {name}",
             "html": f"""
-                <h2>New message from BindassBandhu Contact Form</h2>
+                <h2>New message from BindaasBandhu Contact Form</h2>
                 <p><strong>Name:</strong> {name}</p>
                 <p><strong>Email:</strong> {email}</p>
                 <p><strong>Message:</strong></p>
@@ -60,4 +69,3 @@ def send_message():
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5555))
     app.run(debug=False, host='0.0.0.0', port=port)
-

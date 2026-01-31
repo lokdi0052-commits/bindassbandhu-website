@@ -3,16 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}BindaasBandhu - Youth-Driven Content Creation{% endblock %}</title>
-    <meta name="description" content="Bindaas Bandhu is a youth-driven content creation company built on powerful stories that educate, entertain, and inspire change. From India to the world, with purpose.">
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    
+    <!-- SEO Meta Tags -->
+    <title>{% block title %}BindaasBandhu - Youth Content Creation Company | BB.1 Productions{% endblock %}</title>
+    <meta name="description" content="BindaasBandhu (BB.1 Productions) is a youth-driven content creation company from India creating films, music, and documentaries. From India to the world, with purpose.">
+    <meta name="keywords" content="BindaasBandhu, BB.1 Productions, content creation India, production house Guwahati, youth filmmakers">
+    
+    <!-- Social Media Preview -->
+    <meta property="og:title" content="BindaasBandhu - Youth Content Creation">
+    <meta property="og:description" content="Youth-driven content creation company from India. We create films, music, and documentaries that inspire change.">
+    <meta property="og:image" content="https://bindaasbandhu.fun/static/img/logo.png">
+    <meta property="og:url" content="https://bindaasbandhu.fun">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BindaasBandhu - Youth Content Creation">
+    <meta name="twitter:description" content="Youth-driven content creation company from India.">
+    <meta name="twitter:image" content="https://bindaasbandhu.fun/static/img/logo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.ico') }}">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     {% block extra_css %}{% endblock %}
   </head>
